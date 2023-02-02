@@ -7,23 +7,23 @@ describe("Test User class", function () {
   beforeEach(async function () {
     await db.query("DELETE FROM messages");
     await db.query("DELETE FROM users");
-    let u = await User.register({
-      username: "test",
-      password: "password",
-      first_name: "Test",
-      last_name: "Testy",
-      phone: "+14155550000",
-    });
+    let u = await User.register(
+      "test",
+      "password",
+      "Test",
+      "Testy",
+      "+14155550000",
+    );
   });
 
   test("can register", async function () {
-    let u = await User.register({
-      username: "joel",
-      password: "password",
-      first_name: "Joel",
-      last_name: "Burton",
-      phone: "+14155551212",
-    });
+    let u = await User.register(
+      "joel",
+      "password",
+      "Joel",
+      "Burton",
+      "+14155551212",
+    );
 
     expect(u.username).toBe("joel");
     expect(u.password).not.toBe(undefined);

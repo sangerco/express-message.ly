@@ -10,20 +10,20 @@ describe("Test Message class", function () {
     await db.query("DELETE FROM users");
     await db.query("ALTER SEQUENCE messages_id_seq RESTART WITH 1");
 
-    let u1 = await User.register({
-      username: "test1",
-      password: "password",
-      first_name: "Test1",
-      last_name: "Testy1",
-      phone: "+14155550000",
-    });
-    let u2 = await User.register({
-      username: "test2",
-      password: "password",
-      first_name: "Test2",
-      last_name: "Testy2",
-      phone: "+14155552222",
-    });
+    let u1 = await User.register(
+      "test1",
+      "password",
+      "Test1",
+      "Testy1",
+      "+14155550000",
+    );
+    let u2 = await User.register(
+      "test2",
+      "password",
+      "Test2",
+      "Testy2",
+      "+14155552222",
+    );
     let m1 = await Message.create({
       from_username: "test1",
       to_username: "test2",

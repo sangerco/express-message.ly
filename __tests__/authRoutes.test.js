@@ -12,13 +12,12 @@ describe("Auth Routes Test", function () {
     await db.query("DELETE FROM messages");
     await db.query("DELETE FROM users");
 
-    let u1 = await User.register({
-      username: "test1",
-      password: "password",
-      first_name: "Test1",
-      last_name: "Testy1",
-      phone: "+14155550000",
-    });
+    let u1 = await User.register(
+      "test1",
+      "password",
+      "Test1",
+      "Testy1",
+      "+14155550000",);
   });
 
   /** POST /auth/register => token  */
@@ -27,13 +26,13 @@ describe("Auth Routes Test", function () {
     test("can register", async function () {
       let response = await request(app)
         .post("/auth/register")
-        .send({
-          username: "bob",
-          password: "secret",
-          first_name: "Bob",
-          last_name: "Smith",
-          phone: "+14150000000"
-        });
+        .send(
+          "bob",
+          "secret",
+          "Bob",
+          "Smith",
+          "+14150000000"
+        );
 
       let token = response.body.token;
       expect(jwt.decode(token)).toEqual({
